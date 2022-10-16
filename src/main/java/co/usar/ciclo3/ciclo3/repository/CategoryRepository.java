@@ -32,7 +32,7 @@ public class CategoryRepository {
 
     public void update(Category cat){
         categoryCrudRepository.save(cat);
-        
+
     }
     public void delete(Category cat){
         categoryCrudRepository.delete(cat);
