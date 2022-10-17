@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesion</title>
+    <link rel="shortcut icon" href="/images/1logo.png" type="/images">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="/webjars/jquery/jquery.slim.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        
+</head>
+<body>
+    <main>
+        <header>
+            <style>
+            #intro {
+                background-image: url("images/unsplash.png");
+                height: 140vh;
+                background-repeat: no-repeat;
+            }
+            /* Height for devices larger than 576px */
+            @media (min-width: 992px) {
+                #intro {
+                margin-top: -58.59px;
+                }
+            }
+            .navbar .nav-link {
+                color: #fff !important;
+            }
+            </style>
+
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-black h-100 ">
+                <div class="container">
+                    <a class="navbar-brand" href="#">Gym G21</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav mx-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#" target="_self">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" target="_self">Categorias</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" target="_self">Clientes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" target="_self">Maquinas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" target="_self">Reservaciones</a>
+                            </li>  
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">Otros</a>
+                                <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#" target="_self">Mensajes</a>
+                                        <a class="dropdown-item" href="#" target="_self">Reportes</a>
+                                        <a class="dropdown-item" href="#" target="_self">Scores</a>
+                                    </div>
+                                </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- Navbar -->
+
+    
+            <!-- Background image -->
+            <div id="intro" class="bg-body shadow-2-strong">
+                <div class="mask d-flex align-items-center h-100" style="background-color: rgba(0, 0, 0, 0.8);">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-xl-5 col-md-8">
+                                <form class="bg-gradient  rounded-2 shadow-1-strong p-5"></form>
+                                    <div class="container unauthenticated text-white text-center">
+                                        Iniciar Sesión con GitHub: <br>
+                                        <a href="/oauth2/authorization/github">Haz clic aquí</a>
+                                    </div>
+                                    <div class="container authenticated" style="display:none">
+                                        Autenticado como: <span id="user"></span>
+                                    </div>  
+                                </form>
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        <!-- Background image -->
+        </header>
+        <!--Main Navigation-->
+        
+
+        <!--Footer-->
+        <footer class="bg-black text-lg-center border-5">
+            
+
+            <hr class="m-0" />
+
+            <div class="text-center py-4 align-items-center text-white">
+            <p>Sigue nuestras redes sociales</p>
+            <a href="https://www.youtube.com/" class="btn btn-secondary m-2" target="_blank">
+                <i class="fa fa-youtube"></i>
+            </a>
+            <a href="https://www.facebook.com/" class="btn btn-secondary m-2" target="_blank">
+                <i class="fa fa-facebook-f"></i>
+            </a>
+            <a href="https://twitter.com/" class="btn btn-secondary m-2" target="_blank">
+                <i class="fa fa-twitter"></i>
+            </a>
+            <a href="https://github.com/juantorresmillan" class="btn btn-secondary m-2" target="_blank">
+                <i class="fa fa-github"></i>
+            </a>
+            </div>
+
+            
+        </footer>
+        <!--Footer-->
+    </main>
+
+</body>
+<script type="text/javascript">
+    $.get("/user", function (data){
+        $("#user").html(data.name);
+        $(".unauthenticated").hide();
+        $(".authenticated").show();
+    });
+</script>
+</html>

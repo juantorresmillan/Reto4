@@ -1,10 +1,17 @@
 package co.usar.ciclo3.ciclo3.services;
 
+import co.usar.ciclo3.ciclo3.model.Report.CountClient;
+import co.usar.ciclo3.ciclo3.model.Report.CountMachine;
+import co.usar.ciclo3.ciclo3.model.Report.CountStatus;
 import co.usar.ciclo3.ciclo3.model.Reservation;
 import co.usar.ciclo3.ciclo3.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -64,5 +71,41 @@ public class ReservationService {
             return true;
         }).orElse(false);
         return res;
+    }
+
+    //* Reports
+
+    //* Report Top Machine
+    public List<CountMachine> getTopMachine (){
+        return reservationRepository.getTopMachine();
+    }
+
+    //* Report Top Client
+    public List<CountClient> getTopClients (){
+        return reservationRepository.getTopClients();
+    }
+
+    //* Report between dates
+    public List<Reservation> getReservationsPeriod(String dateA, String dateB){
+        SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd");
+        Date a = new Date();
+        Date b = new Date();
+        try {
+            a = parser.parse(dateA);
+            a = parser.parse(dateB);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if (a.before(b)){
+            return reservationRepository.getReservationPeriod(a,b);
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
+    public CountStatus getReservationStatusReport(){
+        List<Reservation>completed=reservationRepository.getReservationsByStatus("completed");
+        List<Reservation>cancelled=reservationRepository.getReservationsByStatus("cancelled");
+        return  new CountStatus (completed.size(),cancelled.size());
     }
 }

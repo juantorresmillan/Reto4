@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retos Ciclo 3</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="js/functions.js"></script>
+    <link rel="shortcut icon" href="/images/1logo.png" type="/images">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@500&family=Montserrat:ital,wght@0,200;1,200&display=swap" rel="stylesheet">
+    
+
+</head>
+<body style="border:200px ;">
+    <h1 style="font-size:80px" font-family:Gotham-Medium> Gimnasio USAR <br>G21</h1>
+
+<!--Seccion de Formulario de máquinas-->
+<MAIN>
+    <section>
+        <h3> Formulario de Máquinas </h3>
+        <div class="tab" id="resultMaquinas"></div>
+        <button class="btn" class="btn" onclick="getDatamachines()"> Consultar Máquinas</button>
+
+        <div>
+            <input type = "number" id = "idmachine" placeholder = "id" class="placeholder">
+            <input type = "text" id = "brand" placeholder = "brand" class="placeholder">
+            <input type = "number" id = "model" placeholder = "model" class="placeholder">
+            <input type = "number" id = "category_id" placeholder = "category_id" class="placeholder">
+            <input type = "text" id = "namemachine" placeholder = "name" class="placeholder">
+        </div>
+
+        <button class="btn" onclick = "saveDatamachines()"> Guardar Máquina </button>
+        <button class="btn" onclick = "editDatamachines()"> Actualizar Máquina </button>
+    </section>
+    <!--Seccion de Formulario de Clientes-->
+    <section>
+        <h3> Formulario de Clientes </h3>
+        <div id="resultClientes"></div>
+        <button class="btn" onclick="getDataclient()"> Consultar Clientes</button>
+        
+        <div>
+            <input type = "number" id = "idclient" placeholder = "id">
+            <input type = "text" id = "nameclient" placeholder = "name">
+            <input type = "text" id = "email" placeholder = "email">
+            <input type = "number" id = "age" placeholder = "age">
+        </div>
+
+        <button class="btn" onclick = "saveDataclient()"> Guardar Cliente </button>
+        <button class="btn" onclick = "editDataclient()"> Actualizar Cliente </button>
+    </section>    
+    <!--Seccion de Formulario de Mensajes-->
+    <section>
+        <h3> Formulario de Mensajes </h3>
+        <div id="result"></div>
+        <button class="btn" onclick="getDatamessage()"> Consultar Mensajes</button>
+        
+        <div>
+            <input type = "number" id = "idmessage" placeholder = "id">
+            <input type = "text" id = "messagetext" placeholder = "messagetext">
+        </div>
+
+        <button class="btn" onclick = "saveDatamessage()"> Guardar Mensaje </button>
+        <button class="btn" onclick = "editDatamessage()"> Actualizar Mensaje </button>
+    </section>
+    <span>Created by: Juan David Torres</span>
+</MAIN>
+</body>
+</html>

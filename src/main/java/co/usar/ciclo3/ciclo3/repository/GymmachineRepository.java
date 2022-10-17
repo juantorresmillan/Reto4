@@ -30,4 +30,8 @@ public class GymmachineRepository {
     public void delete (Gymmachine gym){
         gymmachineCrudRepository.delete(gym);
     }
+    //* Method Report CountMachine
+    public List<Object[]> getTopByYear(){
+        return gymmachineCrudRepository.countTotalMachinesByYear();
+    }
 }
