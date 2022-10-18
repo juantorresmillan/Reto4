@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reservaciones</title>
+    <title>Administracion</title>
     <link rel="shortcut icon" href="/images/1logo.png" type="/images">
     
     <link rel="stylesheet" href="css/style.css">
@@ -60,23 +60,22 @@
         </nav>
     </div>
 
-    <!--Client View-->
+    <!--Category View-->
     <section>
-        <a href="http://localhost:8080/api/Reservations/all"></a><br>
-        <h3 class="text-lg-center"> Formulario de Reservaciones</h3>
-        <div class="tab" id="resultReservations"></div>
+        <a href="http://localhost:8080/api/Admin/all"></a><br>
+        <h3 class="text-lg-center"> Formulario de Administración</h3>
+        <div class="tab" id="resultAdmin"></div>
         <div id="formato" class="form-group container text-center">
-            <input class="form-control m-3 border-dark" style="width: 18em" type = "number" id = "idReservation" placeholder = "Id" class="placeholder" >
-            <input class="form-control m-3 border-dark" style="width: 18em" type = "date" id = "startDate" placeholder = "Fecha Inicio" class="placeholder">
-            <input class="form-control m-3 border-dark" style="width: 18em" type = "date" id = "devolutionDate" placeholder = "Fecha Devolución" class="placeholder">
-            <input class="form-control m-3 border-dark" style="width: 18em" type = "text" id = "status" placeholder = "Estado (Completado - Cancelado)" class="placeholder">
-            <button class="btn btn-dark" onclick = "saveDataReservations()" > Guardar Mensaje </button>
-            <button class="btn btn-dark" onclick = "editDataReservations()"> Actualizar Mensaje </button>    
+            <input class="form-control m-3 border-dark" style="width: 18em" type = "number" id = "id" placeholder = "Id" class="placeholder" >
+            <input class="form-control m-3 border-dark" style="width: 18em" type = "text" id = "name" placeholder = "Nombre" class="placeholder">
+            <input class="form-control m-3 border-dark" style="width: 18em" type = "text" id = "password" placeholder = "Contraseña" class="placeholder">
+            <input class="form-control m-3 border-dark" style="width: 18em" type = "email" id = "email" placeholder = "E-mail" class="placeholder">
+            <button class="btn btn-dark" onclick = "saveDataAdmin()" > Guardar Administrador </button>
+            <button class="btn btn-dark" onclick = "editDataAdmin()"> Actualizar Administrador </button>    
         </div>
     </section>
-
 <!--Footer-->
-<footer class="bg-black text-lg-center border-5"  style="margin-top:200px">
+<footer class="bg-black text-lg-center border-5" style="margin-top:200px">
             
 
     <hr class="m-0" />
@@ -99,7 +98,7 @@
 
     
 </footer>
-<!--Footer-->            
+<!--Footer-->          
 
             
             

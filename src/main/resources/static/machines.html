@@ -11,71 +11,73 @@
     <script type="text/javascript" src="js/functions.js"></script>
     
     <link rel="stylesheet" href="css/style.css">
-        
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="/webjars/jquery/jquery.slim.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
-    
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
 
 <body> 
     <main>
     
     <!--Navbar-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
-        <div class="container">
-            <a class="navbar-brand" href="#">Gym G21</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/home.html" target="_self">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/category.html" target="_self">Categorias</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/client.html" target="_self">Clientes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/machines.html" target="_self">Maquinas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/reservations.html" target="_self">Reservaciones</a>
-                    </li>  
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">Otros</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/messages.html" target="_self">Mensajes</a>
-                                <a class="dropdown-item" href="/reports.html" target="_self">Reportes</a>
-                                <a class="dropdown-item" href="/scores.html" target="_self">Scores</a>
-                            </div>
-                    </li>
-                </ul>
+    <div class="sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-black ">
+            <div class="container">
+                <a class="navbar-brand" href="#">Gym G21</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/home.html" target="_self">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/category.html" target="_self">Categorias</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/client.html" target="_self">Clientes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/machines.html" target="_self">Maquinas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/reservations.html" target="_self">Reservaciones</a>
+                        </li>  
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">Otros</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="/admin.html" target="_self">Admin</a>
+                                    <a class="dropdown-item" href="/messages.html" target="_self">Mensajes</a>
+                                    <a class="dropdown-item" href="/reports.html" target="_self">Reportes</a>
+                                    <a class="dropdown-item" href="/scores.html" target="_self">Scores</a>
+                                </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </div>
     <section>
-        <h3> Formulario de Máquinas </h3>
-        <div id="resultMaquinas"></div>
-        <button onclick="getDatamachines()"> Consultar Máquinas</button>
-
-        <div>
-            <input type = "number" id = "idmachine" placeholder = "id" class="placeholder">
-            <input type = "text" id = "brand" placeholder = "brand" class="placeholder">
-            <input type = "number" id = "model" placeholder = "model" class="placeholder">
-            <input type = "number" id = "category_id" placeholder = "category_id" class="placeholder">
-            <input type = "text" id = "namemachine" placeholder = "name" class="placeholder">
+        <a href="http://localhost:8080/api/Machine/all"></a><br>
+        <h3 class="text-lg-center"> Formulario de Máquinas </h3>
+        <div class="tab" id="resultMaquinas"></div>
+        <div id="formato" class="form-group container text-center">
+            <input class="form-control m-3 border-dark" style="width: 18em" type = "number" id = "idmachine" placeholder = "id" class="placeholder" >
+            <input class="form-control m-3 border-dark" style="width: 18em" type = "text" id = "brand" placeholder = "brand" class="placeholder">
+            <input class="form-control m-3 border-dark" style="width: 18em" type = "number" id = "model" placeholder = "model" class="placeholder">
+            <input class="form-control m-3 border-dark" style="width: 18em" type = "number" id = "category_id" placeholder = "category_id" class="placeholder">
+            <input class="form-control m-3 border-dark" style="width: 18em" type = "text" id = "namemachine" placeholder = "name" class="placeholder">
+            <button class="btn btn-dark" onclick = "saveDatamachines()" > Guardar Máquina </button>
+            <button class="btn btn-dark" onclick = "editDatamachines()"> Actualizar Máquina </button>    
         </div>
-
-        <button class="btn" onclick = "saveDatamachines()"> Guardar Máquina </button>
-        <button class="btn" onclick = "editDatamachines()"> Actualizar Máquina </button>
     </section>
     
     <!--Footer-->
-    <footer class="bg-black text-lg-center border-5">
+    <footer class="bg-black text-lg-center border-5"  style="margin-top:200px">
             
 
         <hr class="m-0" />

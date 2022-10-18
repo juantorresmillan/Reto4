@@ -1,35 +1,39 @@
+$(document).ready(function(){
+    getDatamachines();
+})
+
+
 // funciones para formulario de máquinas
+
 function getDatamachines(){
     $.ajax({
-        url: "https://g5c9a60c1f9cb50-retos.adb.us-sanjose-1.oraclecloudapps.com/ords/admin/gym/gym", 
+        url: "http://localhost:8080/api/Machine/all", 
         type: "GET",
         datatype: "JSON",
-        success: function(respuesta){
-            console.log(respuesta);
-            showDatamachines(respuesta.items);
+        success: function(response){
+            console.log(response);
+            showDatamachines(response.items);
         }
     });
 }
 
 function showDatamachines(items){
-    let myTable="<table>";
-    myTable+="<th>Id</th>";
-    myTable+="<th>Brand</th>";
-    myTable+="<th>Model</th>";
-    myTable+="<th>Category</th>";
-    myTable+="<th>Name</th>";
+    let myTable='<div class="container"><div class="row">' ;
     for (i=0;i<items.length;i++){
-        myTable+="<tr>";
-        myTable+="<td>"+items[i].id+"</td>";
-        myTable+="<td>"+items[i].brand+"</td>";
-        myTable+="<td>"+items[i].model+"</td>";
-        myTable+="<td>"+items[i].category_id+"</td>";
-        myTable+="<td>"+items[i].name+"</td>";
-        myTable+="<td><button onclick='deleteDatamachines("+items[i].id+")'>Eliminar máquina</button></td>";
-        myTable+="</tr>";
+        myTable += `
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title"> ${items[i].brand} </h5>
+                    <h6 class="card-subtitle mb-2 text-muted"> ${items[i].model} </h6>
+                    <h4 class="card-subtitle"> ${items[i].id} </h4>
+                    <p class="card-text"> ${items[i].name} </p>
+                    <button class="tbn btn-warning" onClick="deleteDatamachines(${items[i].id})"> Eliminar </button>
+                </div>
+            </div>
+        `
     }
-    myTable+="</table>";
-    $("#resultMaquinas").append(myTable);
+    myTable+="</div></div>"
+    $("#resultMachine").append(myTable);
 }
 
 function saveDatamachines(){
@@ -42,12 +46,12 @@ function saveDatamachines(){
     };
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url: "https://g5c9a60c1f9cb50-retos.adb.us-sanjose-1.oraclecloudapps.com/ords/admin/gym/gym",
+        url: "http://localhost:8080/api/Machine/save",
         type: "POST",
         data: myData,
         datatype: "JSON",
-        success: function(respuesta){
-            $("#resultMaquinas").empty();
+        success: function(response){
+            $("#resultMachine").empty();
             $("#id").val();
             $("#brand").val();
             $("#model").val();
@@ -69,13 +73,13 @@ function editDatamachines(){
     };
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url: "https://g5c9a60c1f9cb50-retos.adb.us-sanjose-1.oraclecloudapps.com/ords/admin/gym/gym",
+        url: "http://localhost:8080/api/Machine/update",
         type: "PUT",
         data: dataToSend,
         contentType:"application/JSON",
         datatype: "JSON",
-        success: function(respuesta){
-            $("#resultMaquinas").empty();
+        success: function(response){
+            $("#resultMachine").empty();
             $("#id").val();
             $("#brand").val();
             $("#model").val();
@@ -87,25 +91,6 @@ function editDatamachines(){
     });
 }
 
-function deleteDatamachines(idmachines){
-    let myData={
-        id:idmachines
-    };
-    let dataToSend=JSON.stringify(myData);
-    $.ajax({
-        url: "https://g5c9a60c1f9cb50-retos.adb.us-sanjose-1.oraclecloudapps.com/ords/admin/gym/gym",
-        type: "DELETE",
-        data: dataToSend,
-        contentType:"application/JSON",
-        datatype: "JSON",
-        success: function(respuesta){
-            $("#resultMaquinas").empty();
-            getDatamachines();
-            alert("Se ha eliminado la máquina.")
-        }
-    });
-}
-
 // funciones para formulario de Clientes
 
 function getDataclient(){
@@ -113,9 +98,9 @@ function getDataclient(){
         url: "https://g5c9a60c1f9cb50-retos.adb.us-sanjose-1.oraclecloudapps.com/ords/admin/client/client", 
         type: "GET",
         datatype: "JSON",
-        success: function(respuesta){
-            console.log(respuesta);
-            showDataclient(respuesta.items);
+        success: function(response){
+            console.log(response);
+            showDataclient(response.items);
         }
     });
 }
@@ -136,7 +121,7 @@ function showDataclient(items){
         myTable1+="</tr>";
     }
     myTable1+="</table>";
-    $("#resultClientes").append(myTable1);
+    $("#resultClient").append(myTable1);
 }
 
 function saveDataclient(){
@@ -153,8 +138,8 @@ function saveDataclient(){
         type: "POST",
         data: myData,
         datatype: "JSON",
-        success: function(respuesta){
-            $("#resultClientes").empty();
+        success: function(response){
+            $("#resultClient").empty();
             $("#id").val();
             $("#name").val();
             $("#email").val();
@@ -179,8 +164,8 @@ function editDataclient (){
         data: dataToSend,
         contentType:"application/JSON",
         datatype: "JSON",
-        success: function(respuesta){
-            $("#resultClientes").empty();
+        success: function(response){
+            $("#resultClient").empty();
             $("#id").val();
             $("#name").val();
             $("#email").val();
@@ -203,8 +188,8 @@ function deleteDataclient (idclient){
         data: dataToSend,
         contentType:"application/JSON",
         datatype: "JSON",
-        success: function(respuesta){
-            $("#resultClientes").empty();
+        success: function(response){
+            $("#resultClient").empty();
             getDataclient();
             alert("Se ha eliminado el cliente.")
         }
@@ -217,9 +202,9 @@ function getDatamessage(){
         url: "https://g5c9a60c1f9cb50-retos.adb.us-sanjose-1.oraclecloudapps.com/ords/admin/message/message", 
         type: "GET",
         datatype: "JSON",
-        success: function(respuesta){
-            console.log(respuesta);
-            showDatamessage(respuesta.items);
+        success: function(response){
+            console.log(response);
+            showDatamessage(response.items);
         }
     })
 }
@@ -237,7 +222,7 @@ function showDatamessage(items){
         myTable+="</tr>";
     }
     myTable+="</table>";
-    $("#result").append(myTable);
+    $("#resultMessages").append(myTable);
 }
 
 function saveDatamessage (){
@@ -251,8 +236,8 @@ function saveDatamessage (){
         type: "POST",
         data: myData,
         datatype: "JSON",
-        success: function(respuesta){
-            $("#result").empty();
+        success: function(response){
+            $("#resultMessages").empty();
             $("#id").val();
             $("#messagetext").val();
             getDatamessage();
@@ -273,8 +258,8 @@ function editDatamessage (){
         data: dataToSend,
         contentType:"application/JSON",
         datatype: "JSON",
-        success: function(respuesta){
-            $("#result").empty();
+        success: function(response){
+            $("#resultMessages").empty();
             $("#id").val();
             $("#messagetext").val();
             getDatamessage();
@@ -294,8 +279,8 @@ function deleteDatamessage (idmessage){
         data: dataToSend,
         contentType:"application/JSON",
         datatype: "JSON",
-        success: function(respuesta){
-            $("#result").empty();
+        success: function(response){
+            $("#resultMessages").empty();
             getDatamessage();
             alert("Se ha eliminado el mensaje.")
         }
