@@ -87,7 +87,7 @@ public class ReservationService {
 
     //* Report between dates
     public List<Reservation> getReservationsPeriod(String dateA, String dateB){
-        SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat parser = new SimpleDateFormat("YYYY-MM-DD");
         Date a = new Date();
         Date b = new Date();
         try {
