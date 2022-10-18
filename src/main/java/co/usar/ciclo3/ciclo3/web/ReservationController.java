@@ -1,9 +1,7 @@
 package co.usar.ciclo3.ciclo3.web;
 
-import co.usar.ciclo3.ciclo3.model.Gymmachine;
 import co.usar.ciclo3.ciclo3.model.Report.CountClient;
-import co.usar.ciclo3.ciclo3.model.Report.CountMachine;
-import co.usar.ciclo3.ciclo3.model.Report.CountStatus;
+import co.usar.ciclo3.ciclo3.model.Report.StatusAmount;
 import co.usar.ciclo3.ciclo3.model.Reservation;
 import co.usar.ciclo3.ciclo3.services.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,28 +49,20 @@ public class ReservationController {
 
     //* Reports:
 
-    @GetMapping("/report-machines")
-    public List<CountMachine> getReservationsReportMachine(){
-         return reservationService.getTopMachine();
-    }
-
+    //* Report Top Clients
     @GetMapping("/report-clients")
     public List<CountClient> getReservationsReportClient(){
         return reservationService.getTopClients();
     }
 
-    @GetMapping("/report-dates/{dateOne}/{dateTwo}")
-    public List<Reservation> getReservationsReportDates(@PathVariable("dateOne") String dateOne, @PathVariable("dateTwo") String dateTwo){
-        return reservationService.getReservationsPeriod(dateOne,dateTwo);
-    }
-
-    @GetMapping("/report-dates/amount/{dateOne}/{dateTwo}")
-    public Integer getReservationsReportDatesAmount(@PathVariable("dateOne") String dateOne, @PathVariable("dateTwo") String dateTwo){
-        return reservationService.getReservationsPeriod(dateOne,dateTwo).size();
-    }
-
     @GetMapping("/report-status")
-    public CountStatus getReservationsStatusReport(){
-         return reservationService.getReservationStatusReport();
+    public StatusAmount getReservationStatusAmount(){
+        return reservationService.getReservationStatusReport();
+    }
+
+    @GetMapping("/report-dates/{dateOne}/{dateTwo}")
+    public List<Reservation> getReservationsReportDates(@PathVariable("dateOne") String dateOne,
+                                                        @PathVariable("dateTwo") String dateTwo){
+        return reservationService.getReservationsPeriod(dateOne,dateTwo);
     }
 }

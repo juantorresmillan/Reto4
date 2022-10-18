@@ -1,8 +1,6 @@
 package co.usar.ciclo3.ciclo3.repository;
 
 import co.usar.ciclo3.ciclo3.model.Client;
-import co.usar.ciclo3.ciclo3.model.Gymmachine;
-import co.usar.ciclo3.ciclo3.model.Report.CountMachine;
 import co.usar.ciclo3.ciclo3.model.Reservation;
 import co.usar.ciclo3.ciclo3.model.Report.CountClient;
 import co.usar.ciclo3.ciclo3.repository.crud.ReservationCrudRepository;
@@ -39,15 +37,6 @@ public class ReservationRepository {
 
     //* Reports:
 
-    public List<CountMachine> getTopMachine(){
-        List<CountMachine> res = new ArrayList<>();
-        List<Object[]> report = reservationCrudRepository.countTotalReservationsByMachine();
-            for (int i=0; i<report.size();i++){
-                res.add(new CountMachine((Long)report.get(i)[1], (Gymmachine) report.get(i)[0]));
-            }
-            return res;
-    }
-
     //*Report Total Reservations by Client
     public List <CountClient> getTopClients(){
         List <CountClient> res = new ArrayList<>();
@@ -60,7 +49,7 @@ public class ReservationRepository {
 
     //*Report between Dates (Start - Devolution)
     public List <Reservation> getReservationPeriod (Date a, Date b){
-        return reservationCrudRepository.findAllByStartDateAfterAndDevolutionDateBefore(a, b);
+        return reservationCrudRepository.findAllByStartDateAfterAndStartDateBefore(a, b);
     }
 
     //* Report by Reservation Status (Completed or Cancelled)

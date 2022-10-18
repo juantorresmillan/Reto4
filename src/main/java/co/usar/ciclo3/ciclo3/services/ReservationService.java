@@ -1,8 +1,7 @@
 package co.usar.ciclo3.ciclo3.services;
 
 import co.usar.ciclo3.ciclo3.model.Report.CountClient;
-import co.usar.ciclo3.ciclo3.model.Report.CountMachine;
-import co.usar.ciclo3.ciclo3.model.Report.CountStatus;
+import co.usar.ciclo3.ciclo3.model.Report.StatusAmount;
 import co.usar.ciclo3.ciclo3.model.Reservation;
 import co.usar.ciclo3.ciclo3.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,14 +74,15 @@ public class ReservationService {
 
     //* Reports
 
-    //* Report Top Machine
-    public List<CountMachine> getTopMachine (){
-        return reservationRepository.getTopMachine();
-    }
-
-    //* Report Top Client
+   //* Report Top Client
     public List<CountClient> getTopClients (){
         return reservationRepository.getTopClients();
+    }
+
+    public StatusAmount getReservationStatusReport(){
+        List<Reservation>completed=reservationRepository.getReservationsByStatus("completed");
+        List<Reservation>cancelled=reservationRepository.getReservationsByStatus("cancelled");
+        return  new StatusAmount(completed.size(),cancelled.size());
     }
 
     //* Report between dates
@@ -103,9 +103,5 @@ public class ReservationService {
         }
     }
 
-    public CountStatus getReservationStatusReport(){
-        List<Reservation>completed=reservationRepository.getReservationsByStatus("completed");
-        List<Reservation>cancelled=reservationRepository.getReservationsByStatus("cancelled");
-        return  new CountStatus (completed.size(),cancelled.size());
-    }
+
 }

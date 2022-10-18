@@ -11,6 +11,8 @@ public class CountClient {
     private Long total;
     private Client client;
 
-    public CountClient(Long aLong, Client client) {
+    public CountClient(Long total, Client client) {
+        this.total = total;
+        this.client = client;
     }
 }
